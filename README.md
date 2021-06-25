@@ -8,22 +8,22 @@ if you want to run this just put in folder find folder in terminal do javac *.ja
 ## Outputs
 ### NightmareCalcs
 Sanguinesti staff with thralls and death charge: </br>
-Average blood fury charges per kill: 441. </br>
-Average scythe charges per kill: 197. </br>
+Average blood fury charges per kill: 442. </br>
+Average scythe charges per kill: 198. </br>
 Average sanguinesti staff charges per kill: 88. </br>
-Mean average: 			14:37 </br>
-Median average: 		14:37 </br>
-Fastest kill in 1000001 kills: 	12:14</br>
-Slowest kill in 1000001 kills: 	17:31</br>
+Mean average: 			14:39 </br>
+Median average: 		14:39 </br>
+Fastest kill in 1000001 kills: 	12:18</br>
+Slowest kill in 1000001 kills: 	17:30</br>
 </br>
 Harmonised Nightmare staff: </br>
-Average blood fury charges per kill: 464. </br>
-Average scythe charges per kill: 208. </br>
+Average blood fury charges per kill: 472. </br>
+Average scythe charges per kill: 213. </br>
 Average harmonised staff casts per kill: 82. </br>
-Mean average: 			15:04 </br>
-Median average: 		15:03 </br>
-Fastest kill in 1000001 kills: 	12:16 </br>
-Slowest kill in 1000001 kills: 	18:17 </br>
+Mean average: 			15:17 </br>
+Median average: 		15:16 </br>
+Fastest kill in 1000001 kills: 	12:41 </br>
+Slowest kill in 1000001 kills: 	18:40 </br>
 
 ### SireCalcs (1 million runs)
 Mean avg. arclight kills: 		43.210505989494 seconds. </br>
