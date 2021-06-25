@@ -605,7 +605,7 @@ public class NightmareCalcs {
               maceHit(2);
             }
             thrallHit(false);
-            if (ticksAlive > 8) {
+            if (ticksAlive >= 4) { // Should be able to hit it twice before it starts healing every 4 ticks (idk if this is entirely correct..)
               hp += randomHit(31, 50);
             }
           }
