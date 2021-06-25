@@ -16,6 +16,15 @@ Median average: 		14:39 </br>
 Fastest kill in 1000001 kills: 	12:18</br>
 Slowest kill in 1000001 kills: 	17:30</br>
 </br>
+Sanguinesti staff with thralls, without death charge: </br>
+Average blood fury charges per kill: 443.</br>
+Average scythe charges per kill: 200.</br>
+Average sanguinesti staff charges per kill: 88.</br>
+Mean average: 			14:47</br>
+Median average: 		14:46</br>
+Fastest kill in 1000001 kills: 	12:12</br>
+Slowest kill in 1000001 kills: 	17:53</br>
+</br>
 Harmonised Nightmare staff: </br>
 Average blood fury charges per kill: 472. </br>
 Average scythe charges per kill: 213. </br>
