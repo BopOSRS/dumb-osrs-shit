@@ -449,6 +449,8 @@ public class SireCalcs {
         throw new Exception();
       }
     } catch (Exception e) {
+      System.out.println("Need parameter for amount of runs program should do.");
+      System.out.println("'java SireCalcs <n>' where n is the amount of kills the program should sim");
       return;
     }
     //long timeTaken = System.currentTimeMillis();
