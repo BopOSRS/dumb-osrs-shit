@@ -3,6 +3,12 @@ yeyeyy
 you not coming in her eto talk shit about my code it's one and done no efficiency here </br>
 also hoyl shit i wrote 1000 lines fo code for this stupid nightmare thing </br>
 if you want to run this just put in folder find folder in terminal do javac *.java then java whateveryouwant, if the program takes in parameters it'll tell you..</br>
+bugs with nm</br>
+thralls are too good versus parasites for some reason </br>
+i think "delay" of going from a 4tick to a 5tick weapon is implemented incorrectly but this will apply to both and this was mostly just a test to see how much better thralls were</br>
+forgot to implement the "delay" of going from a 5tick to a 4tick weapon. cba maybe in a few weeks time or after phosani if we figure out mechanics</br>
+any error is either in thralls or death charge, harm vs sang with no extra spells outputs exactly what is expected. (around 12 casts faster) </br>
+
 
 
 ## Outputs
