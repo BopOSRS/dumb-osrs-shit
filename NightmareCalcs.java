@@ -616,7 +616,8 @@ public class NightmareCalcs {
           mageDecayTick += timeTillLevelDecay;
         }
         if (currentTick == heartRegenTick) {
-          timeTillHeartRegen = 0;
+          // timeTillHeartRegen = 0;
+          // idk what i meant to do here but it wasn't this
         }
       }
     }
@@ -630,7 +631,7 @@ public class NightmareCalcs {
     hp = 300;
     sangHit();
     thrallHit(true);
-    if (timeTillHeartRegen == 0) {
+    if (currentTick >= heartRegenTick) {
       heart();
       heartRegenTick = currentTick + timeTillHeartRegen;
     }
