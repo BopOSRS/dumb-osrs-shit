@@ -253,7 +253,6 @@ public class NightmareCalcs {
     if (thralls) {
       if ((huskOneHp > 0) || (huskTwoHp > 0) || (parasiteHp > 0)) {
         int hit = rand.nextInt(3 + 1);
-        hit = hit * 2;
         if (huskOneHp > 0) {
           huskOneHp -= hit;
         } else if (huskTwoHp > 0) {
