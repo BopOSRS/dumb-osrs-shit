@@ -18,6 +18,10 @@ public class NightmareCalcs {
   int mageDecayTick;
   int specRegenTick;
 
+  int bfCharges = 0;
+  int scytheCharges = 0;
+  int mageCasts = 0;
+
   boolean deathChargeActive = false;
 
   // Extra times.
@@ -61,7 +65,7 @@ public class NightmareCalcs {
   Random rand = new Random(System.nanoTime());
 
   public NightmareCalcs() {
-    // Trenger sikkert ikke fikse noe her.
+    // 
   }
 
   public double findMaxAttackRoll(int weapon) {
@@ -147,6 +151,7 @@ public class NightmareCalcs {
     randomNumber = Math.random();
     if (accuracy > randomNumber) {
       hit = rand.nextInt(DWHmax + 1);
+      bfCharges ++;
       if (hit > 0) {
         defLvl = 120;
         hp -= hit;
@@ -167,27 +172,32 @@ public class NightmareCalcs {
         if (i == 0) {
           int hit = randomHit(Math.floor(clawMax / 2), clawMax);
           totalHit = (int) (hit + Math.floor(hit / 2) + (2 * Math.floor(hit / 4)) + 1);
+          bfCharges += 4;
           hp -= totalHit;
           return;
         } else if (i == 1) {
           int hit = randomHit(Math.floor((3 * clawMax) / 8), Math.floor((7 * clawMax) / 8) + 1);
           totalHit = (int) (hit + 2 * Math.floor(hit / 2) + 1);
+          bfCharges += 3;
           hp -= totalHit;
           return;
         } else if (i == 2) {
           int hit = randomHit(Math.floor(clawMax / 4), Math.floor((3 * clawMax) / 4));
           totalHit = 2 * hit + 1;
+          bfCharges += 2;
           hp -= totalHit;
           return;
         } else if (i == 3) {
           int hit = randomHit(Math.floor(clawMax / 4), Math.floor((5 * clawMax) / 4)) + 1;
           hp -= hit;
+          bfCharges += 1;
           return;
         }
       }
     }
     if (Math.random() > 0.5) {
       hp -= 2;
+      bfCharges += 2;
       return;
     }
     return;
@@ -203,20 +213,24 @@ public class NightmareCalcs {
         if (i == 0) {
           int hit = randomHit(Math.floor(clawMax / 2), clawMax);
           totalHit = (int) (hit + Math.floor(hit / 2) + (2 * Math.floor(hit / 4)) + 1);
+          bfCharges += 4;
           parasiteHp -= totalHit;
           return;
         } else if (i == 1) {
           int hit = randomHit(Math.floor((3 * clawMax) / 8), Math.floor((7 * clawMax) / 8) + 1);
           totalHit = (int) (hit + 2 * Math.floor(hit / 2) + 1);
+          bfCharges += 3;
           parasiteHp -= totalHit;
           return;
         } else if (i == 2) {
           int hit = randomHit(Math.floor(clawMax / 4), Math.floor((3 * clawMax) / 4));
           totalHit = 2 * hit + 1;
+          bfCharges += 2;
           parasiteHp -= totalHit;
           return;
         } else if (i == 3) {
           int hit = randomHit(Math.floor(clawMax / 4), Math.floor((5 * clawMax) / 4)) + 1;
+          bfCharges += 1;
           parasiteHp -= hit;
           return;
         }
@@ -224,6 +238,7 @@ public class NightmareCalcs {
     }
     if (Math.random() > 0.5) {
       parasiteHp -= 2;
+      bfCharges += 2;
       return;
     }
     return;
@@ -237,14 +252,18 @@ public class NightmareCalcs {
 
   public void scytheSwing(double accuracy) {
     int hit = 0;
+    scytheCharges ++;
     if (accuracy > Math.random()) {
       hit += rand.nextInt((int)scytheMax + 1);
+      bfCharges++;
     }
     if (accuracy > Math.random()) {
       hit += rand.nextInt((int)Math.floor(scytheMax / 2) + 1);
+      bfCharges++;
     }
     if (accuracy > Math.random()) {
       hit += rand.nextInt((int)Math.floor(scytheMax / 4) + 1);
+      bfCharges++;
     }
     hp -= hit;
   }
@@ -280,6 +299,7 @@ public class NightmareCalcs {
   public void sangHit() {
     int maxHit = 78;
     int hit = 0;
+    mageCasts ++;
     if (!harm) {
       if (mageLvl >= 108) {
         maxHit = 86;
@@ -321,6 +341,7 @@ public class NightmareCalcs {
       accuracy = (1 - ((mdr + 2) / (2 * (mar + 1))));
       if (accuracy > Math.random()) {
         hit = rand.nextInt(maceMax + 1);
+        bfCharges++;
       }
       if (huskOneHp > 0) {
         huskOneHp -= hit;
@@ -333,6 +354,7 @@ public class NightmareCalcs {
       accuracy = (1 - ((mdr + 2) / (2 * (mar + 1))));
       if (accuracy > Math.random()) {
         hit = rand.nextInt(maceMax + 1);
+        bfCharges ++;
       }
       parasiteHp -= hit;
     }
@@ -448,7 +470,7 @@ public class NightmareCalcs {
             specBar = 100;
           }
         } // Regen 10 special energy.
-        if ((hp < 800) && (mageLvl == 99)) {
+        if ((hp < 500) && (mageLvl == 99)) {
           heart();
           heartRegenTick = currentTick + timeTillHeartRegen;
           mageDecayTick = currentTick + timeTillLevelDecay;
@@ -616,8 +638,8 @@ public class NightmareCalcs {
           mageDecayTick += timeTillLevelDecay;
         }
         if (currentTick == heartRegenTick) {
-          // timeTillHeartRegen = 0;
-          // idk what i meant to do here but it wasn't this
+          //timeTillHeartRegen = 0;
+          // idk what i meant to do here but it wasn't this.
         }
       }
     }
@@ -637,6 +659,10 @@ public class NightmareCalcs {
     }
     while (deadTotems < 4) {
       currentTick ++;
+      if ((currentTick >= heartRegenTick) && (deadTotems <= 1)) {
+        heart();
+        heartRegenTick = currentTick + timeTillHeartRegen;
+      }
       if (currentTick == nextSpecialTick) {
         parasiteHp = 40;
         nextSpecialTick += timeBetweenSpecials;
@@ -790,6 +816,7 @@ public class NightmareCalcs {
       if (currentTick >= heartRegenTick) {
         heart();
         heartRegenTick = currentTick + timeTillHeartRegen;
+        // System.out.println("Hearted at " + currentTick + " next tick is " + heartRegenTick);
       }
       if (currentTick % 4 == 0) {
         sangHit();
@@ -819,11 +846,17 @@ public class NightmareCalcs {
     System.out.println("Sanguinesti staff with thralls:");
     NightmareCalcs NM = new NightmareCalcs();
     ArrayList<Double> times = new ArrayList<Double>();
+    int totalBfCharges = 0;
+    int totalScytheCharges = 0;
+    int totalSangCharges = 0;
     int runs = 1000001;
     for (int i = 0; i < runs; i++) {
       NM = new NightmareCalcs();
       NM.simulateKill();
       times.add(NM.killTime);
+      totalBfCharges += NM.bfCharges;
+      totalScytheCharges += NM.scytheCharges;
+      totalSangCharges += NM.mageCasts;
     }
     double totalTime = 0;
     for (double d: times) {
@@ -831,6 +864,9 @@ public class NightmareCalcs {
     }
     double average = totalTime / times.size();
     //String time = (int)Math.floor((average * 0.6) / 60) + ":" + (int)((((average * 0.6)/60) - Math.floor((average * 0.6) / 60))*100*0.6);
+    System.out.println("Average blood fury charges per kill: " + totalBfCharges / runs + ".");
+    System.out.println("Average scythe charges per kill: " + totalScytheCharges / runs + ".");
+    System.out.println("Average sanguinesti staff charges per kill: " + totalSangCharges / runs + ".");
     String minutes = Integer.toString((int)Math.floor((average * 0.6) / 60));
     String seconds = Integer.toString((int)((((average * 0.6)/60) - Math.floor((average * 0.6) / 60))*100*0.6));
     if (seconds.length() == 1) {
@@ -871,6 +907,9 @@ public class NightmareCalcs {
     System.out.println("------");
 
     System.out.println("Harmonised Nightmare staff without thralls:");
+    totalBfCharges = 0;
+    totalScytheCharges = 0;
+    int totalHarmCasts = 0;
     times = new ArrayList<Double>();
     for (int i = 0; i < runs; i++) {
       NM = new NightmareCalcs();
@@ -879,12 +918,18 @@ public class NightmareCalcs {
       NM.deathCharge = false;
       NM.simulateKill();
       times.add(NM.killTime);
+      totalBfCharges += NM.bfCharges;
+      totalScytheCharges += NM.scytheCharges;
+      totalHarmCasts += NM.mageCasts;
     }
     totalTime = 0;
     for (double d: times) {
       totalTime += d;
     }
     average = totalTime / times.size();
+    System.out.println("Average blood fury charges per kill: " + totalBfCharges / runs + ".");
+    System.out.println("Average scythe charges per kill: " + totalScytheCharges / runs + ".");
+    System.out.println("Average harmonised staff casts per kill: " + totalHarmCasts / runs + ".");
     //String time = (int)Math.floor((average * 0.6) / 60) + ":" + (int)((((average * 0.6)/60) - Math.floor((average * 0.6) / 60))*100*0.6);
     minutes = Integer.toString((int)Math.floor((average * 0.6) / 60));
     seconds = Integer.toString((int)((((average * 0.6)/60) - Math.floor((average * 0.6) / 60))*100*0.6));
