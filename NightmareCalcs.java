@@ -65,7 +65,7 @@ public class NightmareCalcs {
   Random rand = new Random(System.nanoTime());
 
   public NightmareCalcs() {
-    // 
+    //
   }
 
   public double findMaxAttackRoll(int weapon) {
@@ -280,7 +280,7 @@ public class NightmareCalcs {
           parasiteHp -= hit;
         }
       } else {
-        if (delayThrall > 0) {
+        if (delayThrall == 0) {
           int hit = rand.nextInt(3 + 1);
           if (mage) {
             hit = hit * 2;
@@ -489,7 +489,7 @@ public class NightmareCalcs {
     //
     //
     int deadTotems = 0;
-    hp = 300;
+    hp = 200;
     sangHit();
     thrallHit(true);
     while (deadTotems < 4) {
@@ -534,7 +534,7 @@ public class NightmareCalcs {
           thrallHit(true);
         }
         if (hp <= 0) {
-          hp = 300;
+          hp = 200;
           deadTotems ++;
           delayThrall = 1;
         }
@@ -650,7 +650,7 @@ public class NightmareCalcs {
     //
     //
     deadTotems = 0;
-    hp = 300;
+    hp = 200;
     sangHit();
     thrallHit(true);
     if (currentTick >= heartRegenTick) {
@@ -680,8 +680,8 @@ public class NightmareCalcs {
           thrallHit(false);
           if (ticksAlive >= 0) {
             hp += randomHit(31, 50);
-            if (hp > 300) {
-              hp = 300;
+            if (hp > 200) {
+              hp = 200;
             }
           }
         }
@@ -713,7 +713,7 @@ public class NightmareCalcs {
         thrallHit(true);
       }
       if (hp <= 0) {
-        hp = 300;
+        hp = 200;
         deadTotems ++;
         delayThrall = 1;
       }
@@ -803,7 +803,7 @@ public class NightmareCalcs {
     // Final mage phase.
     //
     //
-    hp = 300;
+    hp = 200;
     deadTotems = 0;
     if (currentTick >= heartRegenTick) {
       heart();
@@ -831,7 +831,7 @@ public class NightmareCalcs {
         thrallHit(true);
       }
       if (hp <= 0) {
-        hp = 300;
+        hp = 200;
         deadTotems ++;
         delayThrall = 1;
       }
