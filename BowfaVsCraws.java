@@ -1,6 +1,16 @@
+/*
+ * Should calculate somewhat accurately the average kill time of the different mobs in the fight caves 
+ * where you would typically have to craws bow a first hit then bp the rest.
+ * Meant for comarison between Craws Bow and Bowfa for first hit, every subsequent hit is blowpipe max range ddarts. 
+ * These are all on-task numbers..
+ *
+ * by Bop
+ */
+
 import java.util.*;
 
 class BowfaVsCraws {
+  // my stats..
   int BowfaMAR = 61032;
   int BowfaMax = 51;
   int BowfaSpeed = 4;
@@ -9,11 +19,12 @@ class BowfaVsCraws {
   int CrawsMax = 34;
   int CrawsSpeed = 3;
 
+  // i forgot to implement the -4 range acc on bp when using crystal, but whatever
   int BlowpipeMAR = 33476;
   int BlowpipeMax = 33;
   int BlowpipeSpeed = 3;
 
-  //
+  // npc stats.
   int BatMDR = 1536; int BatHP = 10;
   int BlobMDR = 2496; int BlobHP = 20;
   int RangeMDR = 4416; int RangeHP = 40;
