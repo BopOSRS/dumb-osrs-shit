@@ -7,6 +7,10 @@
  * by Bop
  */
 
+//
+// yes the main method is absolutely disgusting
+//
+
 import java.util.*;
 
 class BowfaVsCraws {
