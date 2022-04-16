@@ -26,7 +26,7 @@ class BowfaVsCraws {
   // i forgot to implement the -4 range acc on bp when using crystal, but whatever
   int BlowpipeMAR = 33476;
   int BlowpipeMax = 33;
-  int BlowpipeSpeed = 3;
+  int BlowpipeSpeed = 2;
 
   // npc stats.
   int BatMDR = 1536; int BatHP = 10;
