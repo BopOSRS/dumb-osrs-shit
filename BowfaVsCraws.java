@@ -44,7 +44,7 @@ class BowfaVsCraws {
 
   }
 
-  public double calcAccuracy(int MAR, int MDR) {
+  public double calcAccuracy(double MAR, double MDR) {
     double accuracy;
     if (MAR > MDR) {
       accuracy = (1 - ((MDR + 2) / (2 * (MAR + 1))));
