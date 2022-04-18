@@ -1,9 +1,10 @@
 /*
+ * used for calculating when to scythe different mobs in the fight caves
+ * using the setup in #jad (by tbach)
+ * again very ugly but it does the job and should do it correctly
  *
- *
- *
- *
- *
+ * if it in some places isn't checking everything it is because i got from earlier tests that it 100% isn't efficient
+ * no point checking 0-160 hp 1 million times each for mager when i know it is between 30 and 50
  *
  * by Bop
  */
@@ -104,7 +105,8 @@ class scythetech {
         // First scythe hit.
         hp -= rand.nextInt(scytheMax + 1);
         if (hp <= 0) {
-          killTime -= 1;
+          //Death animation speedup will not actually save a tick
+          //killTime -= 1;
         }
       } if (accuracy > Math.random()) {
         // Second scythe hit
@@ -167,7 +169,7 @@ class scythetech {
 
   public int simulateKill(int hpForSwitch, int mob) {
     killTime = 0;
-    // i don't really know yet lol
+
     if (mob == 0) {
       hp = 10;
     } if (mob == 1) {
@@ -184,7 +186,7 @@ class scythetech {
       killTime += BlowpipeSpeed;
       if (hp <= 0) {
         killTime -= BlowpipeSpeed;
-        killTime += 1;
+        killTime += BlowpipeTravelTime;
       }
     }
     while (hp > 0 && hp <= hpForSwitch) {
@@ -200,7 +202,7 @@ class scythetech {
 
   public int simulateKill(int hpForSwitch, int mob, int hpForSwitchTbow) {
     killTime = 0;
-    // i don't really know yet lol
+    
     if (mob == 4) {
       hp = 160;
     }
@@ -255,8 +257,8 @@ class scythetech {
         bestTime = totalTime;
       }
     }
-    System.out.println("Scythe tech bat hp to scythe: " + switchHp + ", average killtime " + bestTime / runs);
-    System.out.println("Time saved: " + (1.7573412426587574 - bestTime / runs));
+    System.out.println("Scythe tech bat hp to scythe: " + switchHp + ", average killtime " + (double)Math.round((bestTime / runs)*100)/100);
+    System.out.println("Time saved: " + (double)Math.round((1.7573412426587574 - bestTime / runs)*100)/100);
     System.out.println();
 
     scythetechtimes = new ArrayList<Integer>();
@@ -277,8 +279,8 @@ class scythetech {
         bestTime = totalTime;
       }
     }
-    System.out.println("Scythe tech blob hp to scythe: " + switchHp + ", average killtime " + bestTime / runs);
-    System.out.println("Time saved: " + (2.773102226897773 - bestTime / runs));
+    System.out.println("Scythe tech blob hp to scythe: " + switchHp + ", average killtime " + (double)Math.round((bestTime / runs)*100)/100);
+    System.out.println("Time saved: " + (double)Math.round((2.773102226897773 - bestTime / runs)*100)/100);
     System.out.println();
 
     scythetechtimes = new ArrayList<Integer>();
@@ -300,8 +302,8 @@ class scythetech {
         switchHp = i;
       }
     }
-    System.out.println("Scythe tech range hp to scythe: " + switchHp + ", average killtime " + bestTime / runs);
-    System.out.println("Time saved: " + (5.596445403554596 - bestTime / runs));
+    System.out.println("Scythe tech range hp to scythe: " + switchHp + ", average killtime " + (double)Math.round((bestTime / runs)*100)/100);
+    System.out.println("Time saved: " + (double)Math.round((5.596445403554596 - bestTime / runs)*100)/100);
     System.out.println();
 
     scythetechtimes = new ArrayList<Integer>();
@@ -323,8 +325,8 @@ class scythetech {
       }
     }
 
-    System.out.println("Scythe tech melee hp to scythe: " + switchHp + ", average killtime " + bestTime / runs);
-    System.out.println("Time saved: " + (11.520807479192522 - bestTime / runs));
+    System.out.println("Scythe tech melee hp to scythe: " + switchHp + ", average killtime " + (double)Math.round((bestTime / runs)*100)/100);
+    System.out.println("Time saved: " + (double)Math.round((11.520807479192522 - bestTime / runs)*100)/100);
     System.out.println();
 
     int switchHpTbow = 161;
@@ -351,45 +353,7 @@ class scythetech {
       }
     }
     System.out.println("Scythe tech mage hp to blowpipe: " + switchHpTbow + ", hp to scythe: " + switchHp);
-    System.out.println("Average killtime: " + bestTime / runs);
-    System.out.println("Time saved: " + (22.002443997556004 - bestTime / runs));
-
-
-    /*totalTime = 0;
-    for (double d: scythetechtimes) {
-      totalTime += d;
-    }
-    double average = totalTime / runs;
-    System.out.println("Mean average scythetechtimes: \t\t" + average + " ticks.");
-
-    totalTime = 0;
-    for (double d: scythetechblob) {
-      totalTime += d;
-    }
-    average = totalTime / runs;
-    System.out.println("Mean average scythetechblob: \t\t" + average + " ticks.");
-
-    totalTime = 0;
-    for (double d: scythetechrange) {
-      totalTime += d;
-    }
-    average = totalTime / runs;
-    System.out.println("Mean average scythetechrange: \t\t" + average + " ticks.");
-
-    totalTime = 0;
-    for (double d: scythetechmelee) {
-      totalTime += d;
-    }
-    average = totalTime / runs;
-    System.out.println("Mean average scythetechmelee: \t\t" + average + " ticks.");
-
-    totalTime = 0;
-    for (double d: scythetechmage) {
-      totalTime += d;
-    }
-    average = totalTime / runs;
-    System.out.println("Mean average scythetechmage: \t\t" + average + " ticks.");
-
-*/
+    System.out.println("Average killtime: " + (double)Math.round((bestTime / runs)*100)/100);
+    System.out.println("Time saved: " + (double)Math.round((22.002443997556004 - bestTime / runs)*100)/100);
   }
 }
